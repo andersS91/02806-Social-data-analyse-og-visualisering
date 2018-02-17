@@ -42,12 +42,9 @@
 			var h = 300;
 			var padding = 30;
 
-			var data = [];
-			d3.csv("farmersMarket.csv", function(data) {
-  				data.push(data);
-			});
-			console.log(data[0]);
-			
+			d3.text('farmersMarket.csv.csv', function(error, _data){
+            var data = d3.csv.parseRows(_data);
+        	console.log(data)
 			//Dynamic, random dataset
 			var dataset = [];											//Initialize empty array
 			var numDataPoints = 50;										//Number of dummy data points to create
@@ -153,6 +150,7 @@
 				    	.transition()
 				    	.duration(1000)
 						.call(yAxis);
+				});
 				});
 		</script>
  		<p>If you miss the month of September, you might be behind the fruit curve, but there are plenty more months of vegetables left.  The chart shows that fresh vegetables are available 9 out of 12 months, but fruit is only available 5 out of 12. Now if only we could quantify how delicious the produce is… </p>
