@@ -42,9 +42,11 @@
 			var h = 300;
 			var padding = 30;
 
+			var data = [];
 			d3.csv("farmersMarket.csv", function(data) {
-  				console.log(data[0]);
+  				data.push(data);
 			});
+			console.log(data);
 			
 			//Dynamic, random dataset
 			var dataset = [];											//Initialize empty array
