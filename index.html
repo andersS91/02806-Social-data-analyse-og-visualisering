@@ -46,7 +46,7 @@
 			d3.csv("farmersMarket.csv", function(data) {
   				data.push(data);
 			});
-			console.log(data);
+			console.log(data[0]);
 			
 			//Dynamic, random dataset
 			var dataset = [];											//Initialize empty array
@@ -65,9 +65,13 @@
 								 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
 								 .range([h - padding, padding]);
 			//Define X axis
-			var xAxis = d3.axisBottom()
-							  .scale(xScale)
-							  .ticks(5);
+			var xAxis = d3.svg.axis()
+            	.scale(x)
+            	.orient("bottom")
+            	.ticks(d3.time.months)
+            	.tickSize(16,0)
+            	.tickFormat(d3.time.format("%B"));
+			
 			//Define Y axis
 			var yAxis = d3.axisLeft()
 							  .scale(yScale)
@@ -77,6 +81,7 @@
 						.append("svg")
 						.attr("width", w)
 						.attr("height", h);
+
 			//Create circles
 			svg.selectAll("circle")
 			   .data(dataset)
